@@ -1,0 +1,24 @@
+- name: Create Azure VM
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: Create VM
+    azure_rm_virtualmachine:
+      client_id: *************************
+      secret: ***************************
+      subscription_id: ***********************
+      tenant: ******************************
+      resource_group: ndbenchtest
+      name: cassandranew
+      vm_size: Standard_DS1_v2
+      admin_username: ubuntu
+      open_ports: 0-65000
+      ssh_password_enabled: false
+      ssh_public_keys: 
+        - path:  /home/ubuntu/.ssh/authorized_keys
+          key_data: "ssh-rsa ******************************************"
+      image:
+        offer: UbuntuServer
+        publisher: Canonical
+        sku: '16.04-LTS'
+        version: latest

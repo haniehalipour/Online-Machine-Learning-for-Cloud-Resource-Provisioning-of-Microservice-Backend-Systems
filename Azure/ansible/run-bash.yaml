@@ -1,0 +1,15 @@
+---
+- name: Transfer and execute a script.
+  hosts: "{{ new_public_ip }}"
+
+  tasks:
+     - name: Transfer the script
+       copy: src=test-bash.sh dest=/home/ubuntu mode=0777
+
+     - name: Execute the script
+       command: sh test-bash.sh
+
+       register: result
+
+     - debug:
+         var: result

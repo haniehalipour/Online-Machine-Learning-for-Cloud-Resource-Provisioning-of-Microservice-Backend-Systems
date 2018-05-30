@@ -1,0 +1,24 @@
+---
+- name: Transfer and execute a script.
+  hosts: "{{ new_public_ip }}"
+
+  tasks:
+     - name: Transfer the script
+       copy: src=test-bash-1.sh dest=/home/ubuntu mode=0777
+
+     - name: Execute the script
+       command: sh test-bash-1.sh
+
+     - name: Transfer the yaml file
+       copy: src=cassandra.yaml dest=/home/ubuntu/cassandra.yaml mode=0777
+
+     - name: copy cassandra file
+       command: sudo cp /home/ubuntu/cassandra.yaml /etc/cassandra
+
+     - name: start cassandra
+       command: sudo service cassandra start
+
+       register: result
+
+     - debug:
+         var: result

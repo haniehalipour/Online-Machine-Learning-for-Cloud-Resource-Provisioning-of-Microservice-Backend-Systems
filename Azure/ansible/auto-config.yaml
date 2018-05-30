@@ -1,0 +1,12 @@
+---
+- import_playbook: /root/run-bash.yaml
+      new_public_ip="{{ new_public_ip }}"
+
+- import_playbook: /root/create-config-cs.yaml
+      seed_ip="{{ seed_ip }}"
+      new_private_ip="{{ new_private_ip }}"
+
+- import_playbook: /root/run-bash-1.yaml
+      new_public_ip="{{ new_public_ip }}"
+
+- import_playbook: /root/cassandra-cleanup.yaml

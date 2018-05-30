@@ -1,0 +1,19 @@
+- name: Cleanup instances
+  hosts: cassandra-nodes
+  gather_facts: False
+
+  tasks:
+
+
+  - name: cleanup nodes
+    command: sudo nodetool cleanup
+
+  - pause:
+      minutes: 1
+
+  - name: status nodes
+    command: sudo nodetool status
+    register: result
+
+  - debug:
+      var: result
