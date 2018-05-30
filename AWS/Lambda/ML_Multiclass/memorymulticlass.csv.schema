@@ -1,0 +1,70 @@
+{
+  "version" : "1.0",
+  "rowId" : null,
+  "rowWeight" : null,
+  "targetAttributeName" : "MemoryUsage_Target",
+  "dataFormat" : "CSV",
+  "dataFileContainsHeader" : true,
+  "attributes" : [ {
+    "attributeName" : "Date",
+    "attributeType" : "CATEGORICAL"
+  }, {
+    "attributeName" : "Time",
+    "attributeType" : "TEXT"
+  }, {
+    "attributeName" : "DiskWriteBytes_Average",
+    "attributeType" : "NUMERIC"
+  }, {
+    "attributeName" : "DiskWriteBytes_Maximum",
+    "attributeType" : "NUMERIC"
+  }, {
+    "attributeName" : "DiskWriteBytes_Target",
+    "attributeType" : "CATEGORICAL"
+  }, {
+    "attributeName" : "DiskReadBytes_Average",
+    "attributeType" : "NUMERIC"
+  }, {
+    "attributeName" : "DiskReadBytes_Maximum",
+    "attributeType" : "NUMERIC"
+  }, {
+    "attributeName" : "DiskReadBytes_Target",
+    "attributeType" : "CATEGORICAL"
+  }, {
+    "attributeName" : "NetworkIn_Average",
+    "attributeType" : "NUMERIC"
+  }, {
+    "attributeName" : "NetworkIn_Maximum",
+    "attributeType" : "NUMERIC"
+  }, {
+    "attributeName" : "NetworkIn_Target",
+    "attributeType" : "CATEGORICAL"
+  }, {
+    "attributeName" : "MemoryUsage_Average",
+    "attributeType" : "NUMERIC"
+  }, {
+    "attributeName" : "MemoryUsage_Maximum",
+    "attributeType" : "NUMERIC"
+  }, {
+    "attributeName" : "MemoryUsage_Target",
+    "attributeType" : "CATEGORICAL"
+  }, {
+    "attributeName" : "NetworkOut_Average",
+    "attributeType" : "NUMERIC"
+  }, {
+    "attributeName" : "NetworkOut_Maximum",
+    "attributeType" : "NUMERIC"
+  }, {
+    "attributeName" : "NetworkOut_Target",
+    "attributeType" : "CATEGORICAL"
+  }, {
+    "attributeName" : "CPUUtilization_Average",
+    "attributeType" : "NUMERIC"
+  }, {
+    "attributeName" : "CPUUtilization_Maximum",
+    "attributeType" : "NUMERIC"
+  }, {
+    "attributeName" : "CPUUtilization_Target",
+    "attributeType" : "CATEGORICAL"
+  } ],
+  "excludedAttributeNames" : [ ]
+}

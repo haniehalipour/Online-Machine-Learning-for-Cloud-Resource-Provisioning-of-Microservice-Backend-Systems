@@ -1,0 +1,125 @@
+---
+- name: Create a sandbox instance
+  hosts: localhost
+  gather_facts: False
+  vars:
+      instance_type: m5.large
+      security_group: launch-wizard-43 # Change the security group name here
+      image: ami-963889e9 # This is an AMI i created myself
+      keypair: primerykey # This is one of my keys that i already have in AWS
+      region: us-east-1 # Change the Region
+      count: 1
+
+  tasks:
+    - name: Launch instance
+      ec2:
+         aws_access_key: "*************"
+         aws_secret_key: "******************************"
+         key_name: "{{ keypair }}"
+         group: "{{ security_group }}"
+         instance_type: "{{ instance_type }}"
+         image: "{{ image }}"
+         wait: true
+         instance_tags:
+             Name: cassandra-new-1
+         region: "{{ region }}"
+         vpc_subnet_id: subnet-08ea5950
+         assign_public_ip: yes
+      register: ec2
+
+#    - pause:
+#         minutes: 1
+
+    - name: Wait for SSH to come up
+      wait_for:
+        host: "{{ item.public_dns_name }}"
+        port: 22
+        delay: 60
+        timeout: 320
+        state: started
+      with_items: "{{ ec2.instances }}"  
+      
+#    - name: Add tag to Instance(s)
+#      aws_access_key: "***************"
+#      aws_secret_key: "*****************************"
+#      local_action: ec2_tag resource="{{ item.id }}" region="{{ region }}" state=present
+#      with_items: "{{ ec2.instances }}"
+#      args:
+#        tags:
+#          Name: cassandra-new-1    
+
+#    - name: remove run the command
+#      command: sudo ansible-playbook -i /etc/ansible/ec2.py cstopremove.yaml -u ubuntu --extra-vars='{"new_public_ip":"{{ item.public_ip }}" }'
+#      with_items: "{{ ec2.instances }}"
+
+    - name: Add new instance to host group
+      add_host:
+        hostname: "{{ item.public_ip }}"
+        groupname: cassandra
+      with_items: "{{ ec2.instances }}"
+
+    - name: create run the command
+#      command: sudo ansible all -i "localhost," -c local -m template -a "src=/root/cassandra.yaml.j2 dest=/root/cassandra.yaml" --private-key=/root/primerykey.pem --extra-vars='{"seed_ip":"10.0.1.14", "new_private_ip":"{{ item.private_ip }}"}'
+      command: sudo ansible-playbook /root/create-config.yaml -u ubuntu --private-key=/root/primerykey.pem --extra-vars='{"seed_ip":"10.0.1.14", "new_private_ip":"{{ item.private_ip }}"}'
+      tags: create
+      with_items: "{{ ec2.instances }}"
+      
+#    - name: transfer run the command
+#      command: sudo ansible-playbook /root/trandfer-config.yaml -u ubuntu --private-key=/root/primerykey.pem --extra-vars='{"new_public_ip":"54.196.198.33" }'
+#      tags: transfer
+#      with_items: "{{ ec2.instances }}"
+
+#    - name: clean run the command
+#      tags: clean
+#      command: sudo ansible-playbook /root/test.yaml -u ubuntu --private-key=/root/primerykey.pem
+
+- hosts: cassandra
+
+  tasks:
+
+  - name: Stop Cassandra
+    command: sudo rm -rf /var/lib/cassandra/data/system/*
+
+  - name: Remove Data
+    command: sudo service cassandra stop
+
+  - name: Remove Data
+    command: sudo rm -rf /etc/cassandra/cassandra.yaml
+
+- hosts: cassandra
+
+  tasks:
+
+     - name: Transfer the yaml file
+       copy: src=cassandra.yaml dest=/home/ubuntu/cassandra.yaml mode=0777
+
+     - name: copy cassandra file
+       command: sudo cp /home/ubuntu/cassandra.yaml /etc/cassandra
+
+     - name: start cassandra
+       command: sudo service cassandra start
+
+       register: result
+
+     - debug:
+         var: result
+
+- hosts: cassandra-nodes
+  gather_facts: False
+
+  tasks:
+
+
+  - name: cleanup nodes
+    command: sudo nodetool cleanup
+
+  - pause:
+      minutes: 1
+
+  - name: status nodes
+    command: sudo nodetool status
+    register: result
+
+  - debug:
+      var: result
+
