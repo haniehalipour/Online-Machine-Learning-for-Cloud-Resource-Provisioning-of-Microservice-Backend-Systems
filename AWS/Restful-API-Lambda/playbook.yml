@@ -1,0 +1,29 @@
+- name: deploy my_lambda_function
+  hosts: localhost
+  connection: local
+  vars:
+    aws_region: us-east-2
+    s3_bucket: lambdafunction2021
+    code_path: my_lambda_function/
+    zip_name: my_lambda_function.zip
+
+  tasks:
+    - s3_bucket:
+         name: lambdafunction2021
+         region: us-east-2
+         versioning: yes
+
+    - include: includes/init_workspace.yml
+    - include: includes/build_zip.yml
+    - include: includes/copy_to_s3.yml
+
+    - name: cloudformation stack
+      cloudformation:
+        region: '{{ aws_region }}'
+        stack_name: my-lambda-function
+        template: files/my_lambda_function_stack.yml
+        template_format: yaml
+        template_parameters:
+          S3Bucket: '{{ s3_bucket }}'
+          S3Key: '{{ zip_name }}'
+          S3ObjectVersion: '{{ s3_version_id }}'
