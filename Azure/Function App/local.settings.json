@@ -1,0 +1,16 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "WEBSITE_SLOT_NAME": "Production",
+    "FUNCTIONS_EXTENSION_VERSION": "~1",
+    "ScmType": "None",
+    "WEBSITE_AUTH_ENABLED": "False",
+    "WEBSITE_HTTPLOGGING_CONTAINER_URL": "https://test202088c5.blob.core.windows.net/logs?sv=2017-04-17&sr=c&sig=ecWE9LqGIr0fZ%2Bca8zwcH3H9ou55eep5ne9jdyzb458%3D&st=2018-09-27T12:19:21Z&se=2218-09-27T12:19:21Z&sp=rwdl",
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "5d14ff5f-51b3-4713-81e4-05ac14d50e10",
+    "WEBSITE_NODE_DEFAULT_VERSION": "6.5.0",
+    "DIAGNOSTICS_AZUREBLOBCONTAINERSASURL": "https://test202088c5.blob.core.windows.net/logs?sv=2017-04-17&sr=c&sig=Jx71c8486fc57dssItdWgffEyEov4aWHV3n2dAe10Xw%3D&st=2018-09-27T12:21:22Z&se=2218-09-27T12:21:22Z&sp=rwdl",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "WEBSITE_SITE_NAME": "test2020",
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=test202088c5;AccountKey=6/1P0LvSSSIzCuYk+5VTv5YEfwJUb9rOpalIa651DkYAsZZ7QqUJDzU7vwOYZpBmbbRsdomzX1q2An92+MTmag=="
+  }
+}
