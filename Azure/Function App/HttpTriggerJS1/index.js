@@ -17,17 +17,17 @@ module.exports = function (context, req) {
     }
     const current_api = temp_current_api;
 
-    //const current_api = 'https://test-new-code-reza.azurewebsites.net/api/HttpTriggerJS1?code=KyMnCz8jpUCyfwXOuL3yLi0yykkfnOqFyF6jakJ67EVJXMukg/DiAQ==';
-	const ml_api = 'http://40.117.72.182/api/';//'http://18.206.161.123/aws/'; //const ml_api = 'http://104.40.193.35/scikit.py';
-	const grafana_API = 'http://40.117.85.133:3000/api/datasources/proxy/2/api/v1/query_range?query=';
-	const add_remove_resources_api = 'http://40.117.72.182/api/';
-	const NdbenchAPI = 'http://52.234.213.114:8080/';//'http://18.209.34.140:8080/'
+    //const current_api = '****************';
+	const ml_api = '****************';
+	const grafana_API = '****************';
+	const add_remove_resources_api = '****************';
+	const NdbenchAPI = '******************';//'****************'
     const containerName = 'test-container';
 	const dataset_blobName = 'dataset.csv';
 	const ML_model_config_file_name = 'ML_model.json';
 	const dataset_config_file_name = 'dataset_config.json';
 	const storage_account_name = 'testresourcegroup234';
-	const access_key = 'mf5gWutfe20854/lqyu+FRpXg1GVt1errPEdAZidfRfezOPJ0M+WtA136N1P3sz7cDJFAqlcHfhkv8j8j6Y5Cw==';
+	const access_key = '****************';
     //We are not using Azure Storage Tables. because it is so buggy!
     //we did prefer to save our data on the Blob storage as a json file.
     const blob_database = 'database.json';
