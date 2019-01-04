@@ -1,6 +1,6 @@
-$appID="70a5cdcc-51d4-449e-8d57-329e3b374e11"
-$password="Hani2018@"
-$tenant="cec393c5-a46b-476a-8ecf-1e911f128eb1"
+$appID="****************"
+$password="****************"
+$tenant="****************"
 az login --service-principal -u $appID --password $password --tenant $tenant
 $rgname= MLApi
 $location= eastus
