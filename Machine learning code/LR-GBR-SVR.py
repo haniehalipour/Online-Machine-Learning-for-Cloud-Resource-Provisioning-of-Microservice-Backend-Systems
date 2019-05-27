@@ -70,7 +70,7 @@ except:
 #Reference for Requests liberary:
 #http://docs.python-requests.org/en/master/user/quickstart/
 restful_api = "https://qstxpu8sn7.execute-api.us-east-1.amazonaws.com/api/restfull"
-#conn = tinys3.Connection('AKIAJSAAR4SSXNDBY4NA','VyOYRTkWWbtsIJrtz8TarQ7avBRv5Sj6TCNofYoi',tls=True)
+#conn = tinys3.Connection('*************',tls=True)
 
 #################################
 ## Send Request to RestFul API ##
